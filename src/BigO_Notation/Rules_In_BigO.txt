@@ -1,0 +1,21 @@
+1. Drop constants
+
+    // Drop Constants
+        public static void printItemsInCaseOfDropConstants (int n) {
+            for (int i = 0; i < n; i++) {
+                System.out.println(i);
+            } [1] => O(N)
+
+            for (int j = 0; j < n; j++) {
+                System.out.println(j);
+            } [2] => O(N)
+        }
+
+    Cả [1] & [2] đề có big O là O(N)
+        => N + N = 2N
+    Nhưng vì Big O bỏ qua hằng số (2 trong trường hợp trên là hằng số)
+    -> Đơn giản hóa thành O(N)
+    -> Chỉ quan tâm đến bậc của N.
+
+
+2. Drop non-donimants

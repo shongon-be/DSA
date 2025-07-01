@@ -1,0 +1,17 @@
+TẤT CẢ CÁC TRƯỜNG HỢP BÊN DƯỚI ĐỀU LÀ CÁC TRƯỜNG HỢP TỆ NHẤT - WORST CASE
+
+1. O(1) - Constant - Hằng số
+
+
+2. O(logN) - Logarithmic
+
+
+3. O(N) - Linear - Tuyến tính
+   Số bước cần thiết để thuật toán hoàn thành 1 task
+    tăng tỉ lệ thuận -> kích thước dữ liệu đầu vào (input size)
+
+4. O(N^2) - Quadratic - Bình phương
+    Số bước cần thiết để thuật toán hoàn thành 1 task
+        tăng theo bình phương kích thước dữ liệu đầu vào (input size).
+
+    O(N^2) với N = 100 -> số bước cần thiết = 10.000 bước
