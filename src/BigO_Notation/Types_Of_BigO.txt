@@ -8,10 +8,37 @@ TẤT CẢ CÁC TRƯỜNG HỢP BÊN DƯỚI ĐỀU LÀ CÁC TRƯỜNG HỢP T�
 
 3. O(N) - Linear - Tuyến tính
    Số bước cần thiết để thuật toán hoàn thành 1 task
-    tăng tỉ lệ thuận -> kích thước dữ liệu đầu vào (input size)
+    tăng tỉ lệ thuận -> kích thước dữ liệu đầu vào (input size).
+
+   ------------------------------------------------------
+
+   // O(N)
+       public static void printItems(int n) {
+           for (int i = 0; i < n; i++) {
+               System.out.println(i);
+           }
+       }
 
 4. O(N^2) - Quadratic - Bình phương
     Số bước cần thiết để thuật toán hoàn thành 1 task
         tăng theo bình phương kích thước dữ liệu đầu vào (input size).
 
-    O(N^2) với N = 100 -> số bước cần thiết = 10.000 bước
+    O(N^2) với N = 100 -> số bước cần thiết = 10.000 bước.
+
+    ------------------------------------------------------
+
+    Lưu ý trường hợp nested 'for' loop - Không phải lúc nào cũng O(N^2)
+
+        // O(N^2)
+            public static void printItemsInNestedLoop (int n) {
+                for (int i = 0; i < n; i++) {
+
+                    for (int j = 0; j < n; j++) {
+                        System.out.println(i + " " + j);
+                    }
+
+                }
+            }
+
+        Giá trị của N ở vòng lặp trong & ngoài phải GIỐNG NHAU -> O(n^2)
+        Nếu khác nhau thì chỉ tính là O(N) -> O(n * m) = O(N).

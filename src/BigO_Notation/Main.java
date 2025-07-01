@@ -31,7 +31,9 @@ public class Main {
     }
 
     public static void main(String[] args) {
-//        printItems(5);
+        printItems(5);
         printItemsInNestedLoop(5);
+
+        printItemsInCaseOfDropConstants(5);
     }
 }
