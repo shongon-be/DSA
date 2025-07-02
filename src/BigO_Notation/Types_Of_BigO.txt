@@ -1,14 +1,87 @@
 TẤT CẢ CÁC TRƯỜNG HỢP BÊN DƯỚI ĐỀU LÀ CÁC TRƯỜNG HỢP TỆ NHẤT - WORST CASE
 
 1. O(1) - Constant - Hằng số
+    Số bước cần thiết để hoàn thành thuật toán này chỉ là 1 BƯỚC.
+    Không quan tâm đến N (input size).
+    Cho dù N tăng lên rất lớn thì số buớc hoàn thành thuật toán này cũng sẽ NHƯ NHAU.
 
+    Đây là trường hợp hiệu quả nhất đối với big O.
+
+    ------------------------------------------------------
+
+    // O(1)
+        public static int addItems(int n) {
+            return n + n;
+        }
+
+    Trong case này, không quan trọng 'n' là 100 hay 1 tỷ
+        thì chỉ có 1 operation cần thực hiện.
+
+    ------------------------------------------------------
+
+    public static int addItems(int n) {
+                return n + n + n; // two operations
+    } -> O(2)
+
+    => Nhưng sẽ được đơn giản hóa thành O(1).
 
 2. O(logN) - Logarithmic
+    Số bước cần thiết để thuật toán hoàn thành 1 task
+        tăng rất chậm khi N (input size tăng lên)/
 
+    -> Mỗi bước, thuật toán sẽ giảm kích thước công việc đi một nửa.
+    =>  Rất hiệu quả khi xử lý dữ liệu lớn!
+
+
+    Ví dụ: Tìm sách trong thư viện có 1024 quyển sách xếp theo thứ tự.
+        Nếu tìm từ đầu đến cuối - linear search
+            => O(N) bước
+        Nhưng nếu:
+            Chia đôi: “Cuốn cần tìm nằm ở nửa đầu hay nửa sau?”
+            Sau đó chia tiếp, chia tiếp...
+            Dừng lại khi tìm thấy 'sách' hoặc chỉ còn 1 phần tử.
+
+        Chỉ cần kiểm tra tối đa: log₂(1024) = 10 lần!
+
+    ------------------------------------------------------
+
+    // O(log N)
+        public static int binarySearch(int[] array, int target) {
+            int left = 0;
+            int right = array.length - 1;
+
+            while (left <= right) {
+                int mid = left + (right - left) / 2;
+                if (array[mid] == target) {
+                    return mid;
+                } else if (array[mid] < target) {
+                    left = mid + 1;
+                } else {
+                    right = mid - 1;
+                }
+            }
+
+            return -1;
+        }
+
+    ------------------------------------------------------
+
+    Khi nào gặp O(log N)?
+        - Dữ liệu đã sắp xếp.
+        - Sử dụng cấu trúc phân tầng: như tree, heap, divide & conquer.
+        - Giải quyết bài toán bằng cách chia nhỏ dần bài toán.
+
+Bảng so sánh:
+    N	                | log₂(N) (ước lượng)
+    10	                |           ~3 bước
+    100	                |           ~7 bước
+    1,000	            |           ~10 bước
+    1,000,000	        |           ~20 bước
+    1 tỉ	            |           ~30 bước
 
 3. O(N) - Linear - Tuyến tính
    Số bước cần thiết để thuật toán hoàn thành 1 task
-    tăng tỉ lệ thuận -> kích thước dữ liệu đầu vào (input size).
+      tăng tỉ lệ thuận -> kích thước dữ liệu đầu vào (input size).
 
    ------------------------------------------------------
 
@@ -41,4 +114,18 @@ TẤT CẢ CÁC TRƯỜNG HỢP BÊN DƯỚI ĐỀU LÀ CÁC TRƯỜNG HỢP T�
             }
 
         Giá trị của N ở vòng lặp trong & ngoài phải GIỐNG NHAU -> O(n^2)
-        Nếu khác nhau thì chỉ tính là O(N) -> O(n * m) = O(N).
+
+        Nếu khác nhau thì chỉ tính là O(N) vì n và m khác nhau.
+
+            public static void printItemsInNestedLoop (int n, int m) {
+                 for (int i = 0; i < n; i++) {
+
+                      for (int j = 0; j < m; j++) {
+                           System.out.println(i + " " + j);
+                      }
+
+                 }
+            }
+
+        -> O(n * m) = O(N) - phụ thuộc vào giá của 'm' và 'n' cái nào lớn hơn
+            thì đại diện cho 'N'.
