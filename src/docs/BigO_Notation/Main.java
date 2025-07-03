@@ -1,4 +1,4 @@
-package BigO_Notation;
+package docs.BigO_Notation;
 
 public class Main {
 

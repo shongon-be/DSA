@@ -1,4 +1,4 @@
-package Class_Pointer.Pointers;
+package docs.Class_Pointer.Pointers;
 
 import java.util.HashMap;
 

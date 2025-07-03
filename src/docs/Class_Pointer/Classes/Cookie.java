@@ -1,4 +1,4 @@
-package Class_Pointer.Classes;
+package docs.Class_Pointer.Classes;
 
 public class Cookie {
     private String color;
