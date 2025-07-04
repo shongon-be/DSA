@@ -1,0 +1,49 @@
+Difference between ArrayList and LinkedList?
+
+- Điểm chung:
+    - Đều implement từ 'List' interface.
+        - Có thể dùng các method: add(), remove(), get(), ...
+    - Đều có kích thước động - dynamic length:
+        - có thể tự tăng/giảm theo lượng data.
+        - không cần khai báo độ dài trước như 'array' thông thường.
+
+- Điểm khác biệt:
+    - ArrayList có 'index' để truy cập 1 item cụ thể.
+    - LinkedList không có 'index' (vẫn có index do implement từ <List> interface
+        nhưng chậm hơn ArrayList vì phải duyệt từ đầu).
+
+    ---------------------------------------------------------
+
+    - ArrayList lưu trữ data ở các vị trí liên tục trên bộ nhớ - contigous place
+        Ví dụ: insert 5 elements vào ArrayList
+          (Tưởng tượng rằng bộ nhớ trong máy tính là các ô vuông)
+
+          ArrayList sẽ tìm 1 vị trí nào đó trong bộ nhớ mà có 5 ô vuông kế tiếp nhau để lưu 5 giá trị đó.
+            Nếu thêm 1 giá trị mới vào ArrayList -> length = 6
+            ArrayList sẽ tìm 1 vị trí khác trên bộ nhớ mà có 6 ô vuông kế tiếp nhau.
+                (Tương tự như vậy khi data tăng lên)
+
+                        -------------------------------
+
+    - LinkedList lưu trữ data ở các ô khác nhau, mỗi ô sẽ liên kết với nhau thông qua địa chỉ trên bộ nhớ.
+    (hoặc thông qua con trỏ - pointer, trỏ tới node tiếp theo)
+        - Các elements trong LL được gọi là Node.
+            1 Node gồm 2 phần: value và next (là con trỏ - pointer, trỏ tới node tiếp theo).
+
+        - LinkedList có 2 con trỏ pointer trỏ vào node đầu tiên (head) và node cuối cùng (tail).
+
+        - Con trỏ 'tail' trỏ tới node cuối cùng, nhận biết bằng cách node cuối của LL sẽ có
+            con trỏ 'next' trỏ tới null
+
+        10 → 29 → 123 → 789 → null
+        ↑                ↑
+        head            tail
+
+ Bảng so sánh:
+    Criteria        |             ArrayList       |              LinkedList             |
+    Access          | Nhanh (O(1)) nhờ chỉ số     |    Chậm (O(n)), phải duyệt từ đầu   |
+    Add middle      | Chậm (O(n)) do cần shift    |    Nhanh hơn (O(1) nếu đã có node)  |
+    Add/remove
+        first/last  | Chậm (O(n)) do phải shift   |    Nhanh (O(1))                     |
+    Space using     | Ít hơn (contiguous)         |    Nhiều hơn (do node chứa con trỏ) |
+    Good for        | Truy cập nhiều, ít thay đổi |    Thêm/xoá thường xuyên            |
