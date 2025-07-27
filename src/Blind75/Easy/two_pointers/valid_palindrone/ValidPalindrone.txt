@@ -1,0 +1,80 @@
+Valid Palindrome
+
+    Given a string 's', return 'true' if it is a palindrome, otherwise return 'false'.
+
+    A palindrome is a string that reads the same forward and backward.
+    It is also case-insensitive and ignores all non-alphanumeric characters.
+
+    Note: Alphanumeric characters consist of letters (A-Z, a-z) and numbers (0-9).
+
+    Example:
+        Ex1: s = "Was it a car or a cat I saw?" -> true
+        Ex2: s = "tab a cat" -> false
+
+    -----------------------------------------------------------------------------------
+
+Thoughs before coding:
+    - Nếu chuỗi 's' chỉ có 1 ký tự hoặc rỗng -> luôn là palindrone: return 'true'.
+    - Làm sạch chuỗi: loại bỏ tất cả ký tự không phải chữ/số, và chuyển về lowercase.
+    1. Brute force - Vét cạn (Đảo ngược chuỗi)
+        - Đảo ngược chuỗi đã làm sạch
+        - So sánh chuỗi gốc (đã làm sạch) với chuỗi đảo ngược.
+            - Nếu giống nhau → là palindrome: return 'true'.
+
+        Pseudocode:
+            if length of 's' = 1 or s.isEmpty()
+                return true
+
+            cleaned = remove non-alphanumeric characters from 's' and convert to lowercase
+
+            reversed = reverse cleaned
+
+            return cleaned == reversed
+
+            StringBuilder reversed = new StringBuilder();
+            for(int i = cleaned.length() - 1; i >= 0; i--) {
+                sb.append(cleaned.charAt(i));
+            }
+            return cleaned.contentEquals(reversed);
+
+        Time complexity: O(N).
+        Space complexity: O(N) do tạo chuỗi đảo.
+
+    2. Two pointers - Hai con trỏ
+        - Dùng 2 con trỏ: đầu(i = 0) và cuối (j = cleaned.length() - 1)
+        - Lặp đến khi "i < j":
+            - Nếu ký tự tại i khác ký tự tại j → không phải palindrome → return false
+            - Ngược lại → tăng i, giảm j
+        - Điều kiện dừng vòng lặp khi i = j, gặp nhau ở kí tự ở giữa.
+            - Nếu thoát vòng lặp mà không return false → return true.
+
+        Pseudocode:
+            i = 0
+            j = cleaned.length - 1
+
+            WHILE i < j:
+                IF cleaned[i] != cleaned[j]:
+                    RETURN false
+                i++
+                j--
+
+            RETURN true
+        Time complexity: O(N).
+        Space complexity: O(1) (nếu không tính cleaned).
+    - Nếu chưa làm sạch chuỗi trước thì có thể sử dụng 'Character.isLetterOrDigit()':
+        while (i < j) {
+            if (!Character.isLetterOrDigit(s.charAt(i))) {
+                i++;
+                continue;
+            }
+            if (!Character.isLetterOrDigit(s.charAt(j))) {
+                j--;
+                continue;
+            }
+            if (Character.toLowerCase(s.charAt(i)) != Character.toLowerCase(s.charAt(j))) {
+                return false;
+            }
+            i++;
+            j--;
+        }
+        return true;
