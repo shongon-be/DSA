@@ -1,0 +1,74 @@
+Cho chuỗi 's' chỉ chứa các dấu ngoặc (), [], {}. Xác định 's' có valid không?
+'s' valid khi:
+1. Dấu ngoặc mở phải được đóng bởi dấu cùng kiểu.
+    (), {}, [] -> true
+    (] -> false
+    (} -> false
+2. Phải đóng đúng thứ tự.
+    ([]) -> true
+    [{]} -> false
+
+Constrainst:
+- 1 <= s.length <= 10^4
+- 's' chỉ chứa '()[]{}'.
+
+======================================================
+Thoughts before coding:
+    1. Brute force
+    - Cho '()', '[]', '{}' là 1 cặp dấu ngoặc hoàn chỉnh - khi dấu mở/đóng cùng kiểu đứng sát nhau.
+      "(]" -> không phải là 1 cặp dấu ngoặc hoàn chỉnh
+
+    - Cho lặp qua chuỗi 's', nếu 's' chứa 1 trong 3 cặp dấu ngoặc hoàn chỉnh.
+        - replace '()', '[]', '{}' thành ""
+        - break vòng lặp khi 's' không chứa 1 trong 3 ccặp dấu ngoặc hoàn chỉnh nữa.
+
+    - nếu chuỗi rỗng, trả về 'true'. Nếu không, trả về 'false'.
+
+    Time complexity: O(N^2)
+    Space complexity: O(1)
+
+    Pseudocode:
+        while s.contains("()") or s.contains("[]") or s.contains("{}")
+            s = s.replace("()", "")
+            s = s.replace("[]", "")
+            s = s.replace("{}", "")
+
+        return s.isEmpty()
+
+    2. Stack
+    - Tạo stack chứa các ký tự.
+    - Lặp qua mảng char[] 's'
+        - nếu gặp dấu ngoặc mở
+            - thêm vào stack
+        - nếu gặp dấu ngoặc đóng
+            - kiểm tra stack có rỗng không
+                - nếu có, return false. (handle các case "}{" đóng ngoặc trước)
+            - kiểm tra dấu ngoặc đóng có giống với dấu ngoặc mở không
+                - nếu có, pop().
+                - nếu không, return false.
+
+    - kiểm tra stack có rỗng không
+        - nếu có, return true.
+        - nếu không, return false.
+
+    Time complexity: O(N)
+    Space complexity: O(N)
+
+    Pseudocode:
+    - Cho 'c' lặp qua các ký tự của 's.toCharArray'
+        - if 'c' chứa các dấu ngoặc mở "[" or "(" or "{"
+            - thêm 'c' vào trong stack.
+        - else
+            - if stack.isEmpty -> return 'false'
+
+            - if 'c' == ")"
+                - if stack.pop != '('
+                    return false
+            - el-if 'c' == "]"
+                - if stack.pop != '['
+                    return false
+            - el-if 'c' == "}"
+                - if stack.pop != '{'
+                    return false
+
+        return stack.isEmpty()
