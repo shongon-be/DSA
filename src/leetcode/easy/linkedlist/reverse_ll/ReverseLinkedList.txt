@@ -1,0 +1,75 @@
+Cho 1 singly linked list. Cho 'head' trỏ vào node đầu tiên trong list.
+Yêu cầu reverse linked list và
+    trả về kiểu ListNode -> `return head`.
+
+Example:
+head → 1 → 2 → 3 → null
+
+null ← 1 ← 2 ← 3 ← head_new
+
+---
+I. Iterative  solution
+    Thought before coding:
+    - Tạo ra 3 con trỏ để tracking, lần lượt là:
+        - before: ở bên trái của 'cur', khi khởi tạo = null
+        - cur: bằng 'head'
+        - after: ở bên phải của 'cur', after = cur.next
+
+    - Lặp lần lượt cho tới khi 'cur = null'
+        - cho after = cur.next
+        - cur.next = before (đảo ngược tham chiếu của node 'cur')
+        - before = cur (di chuyển 'before' sang 'cur')
+        - cur = after (di chuyển 'cur' sang 'after')
+
+    - Trả về 'before' khi kết thúc vòng lặp
+
+    ---
+
+    Pseudocode:
+        before = null
+        cur = head
+        while cur != null:
+            after = cur.next
+            cur.next = before
+            before = cur
+            cur = after
+        return before
+
+    ---
+
+    Sơ đồ hoạt động:
+
+    head -> 1 -> 3 -> 5 -> 7 -> null
+            ↑    ↑               ↑
+           cur  after          before
+
+    Khởi tạo:
+        before = null
+        cur = 1
+
+    Round 1 (cur = 1):
+        after = 3
+        cur.next = before   => null <- 1
+        before = 1
+        cur = 3
+
+    Round 2 (cur = 3):
+        after = 5
+        cur.next = before   => null <- 1 <- 3
+        before = 3
+        cur = 5
+
+    Round 3 (cur = 5):
+        after = 7
+        cur.next = before   => null <- 1 <- 3 <- 5
+        before = 5
+        cur = 7
+
+    Round 4 (cur = 7):
+        after = null
+        cur.next = before   => null <- 1 <- 3 <- 5 <- 7
+        before = 7
+        cur = null
+
+    Kết thúc
+    cur == null → return before (chính là head mới: node 7).
