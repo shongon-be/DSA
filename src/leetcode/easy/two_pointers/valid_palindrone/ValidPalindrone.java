@@ -1,4 +1,4 @@
-package Blind75.Easy.two_pointers.valid_palindrone;
+package leetcode.easy.two_pointers.valid_palindrone;
 
 public class ValidPalindrone {
     static boolean isPalindromeBruteForce(String s) {

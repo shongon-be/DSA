@@ -1,4 +1,4 @@
-package Algorithms.BinarySearch;
+package algorithms.binarysearch;
 
 public class BinarySearch {
     static int binarySearch(int[] arr, int target){

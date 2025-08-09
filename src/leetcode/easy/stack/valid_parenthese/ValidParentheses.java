@@ -1,4 +1,4 @@
-package Blind75.Easy.stack.valid_parenthese;
+package leetcode.easy.stack.valid_parenthese;
 
 import java.util.Stack;
 
