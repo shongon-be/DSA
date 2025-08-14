@@ -1,0 +1,38 @@
+Given `head`, the head of a linked list, determine if the linked list has a cycle in it.
+Để xem là có cycle trong linked list hay không
+    Nếu có 1 node trong list được trỏ tới 1 lần nữa bằng con trỏ 'next'
+        return 'true'
+        nếu không return 'false'
+
+Thoughts before coding:
+- Ý tưởng:
+    - Dùng 2 con trỏ slow (1 step) và fast (2 steps).
+    - Nếu `fast` gặp `slow` → có cycle.
+    - Nếu `fast` hoặc `fast.next` null → không có cycle.
+    - Độ phức tạp: O(n) thời gian, O(1) không gian.
+
+- Nếu 'head' rỗng hoặc chỉ có 1 node
+    - return false
+- Tạo ra 2 con trỏ 'slow' và 'fast' để thao tác trên list.
+
+- Cho lặp qua trên list
+    - 'slow', mỗi lần di chuyển qua 1 node.
+    - 'fast', mỗi lần di chuyển qua 2 node.
+    - Nếu `fast` và `slow` gặp nhau → có cycle.
+    - Nếu fast hoặc fast.next là null → không có cycle.
+
+
+Pseudocode:
+    if (head == null || head.next == null) return false;
+
+    slow = head
+    fast = head
+
+    while (fast != null && fast.next != null) {
+        slow = slow.next
+        fast = fast.next.next
+        if (slow == fast) {
+            return true
+        }
+    }
+    return false
